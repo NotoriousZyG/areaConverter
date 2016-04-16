@@ -1,0 +1,959 @@
+//
+//  ViewController.swift
+//  Napi
+//
+//  Created by Roman Parajuli on 7/24/15.
+//  Copyright (c) 2015 Roman Parajuli. All rights reserved.
+//
+
+import UIKit
+
+@available(iOS 9.0, *)
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+   
+    
+    @IBOutlet weak var Picker1: UIPickerView!
+    @IBOutlet weak var dataEntered: UITextField!
+    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var outputLabel: UILabel!
+    
+    
+    var component1 : String = ""
+    var component2: String = ""
+    
+    
+    var inputArray = [["बिघा","कट्टा","रोपनि","दाम","अाना","पैसा","खेतमुरी","धुर","sq.meter","sq.feet"],["बिघा","कट्टा","रोपनि","दाम","अाना","पैसा","खेतमुरी","धुर","sq.meter","sq.feet"]] // input array 0 and 1
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return inputArray.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return inputArray[component].count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return inputArray[component][row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        
+        switch (component){
+            
+        case 0:
+            component1 = inputArray[component][row]
+            resultLabel.text = component1
+            
+            
+        case 1:
+            
+            component2 = inputArray[component][row]
+            outputLabel.text = component2
+            
+            
+        default:
+            break
+            
+            
+        }
+
+    
+    }
+        
+    
+    
+
+    func selectedRowInComponent(component: Int) -> Int{
+        return 2
+    }
+    
+    
+    
+    
+    
+    @IBAction func convertButton(sender: AnyObject) {
+        
+        let myString: String! = dataEntered.text
+        
+        let myInt: Double? = Double(myString)
+        
+        var result: Double! = 0
+        
+        
+        
+        
+        // component 1 is Bigha and component 2 are other
+        if component1 == "बिघा" {
+            
+            if component2 == "बिघा"{
+                result = myInt! * 1.0   // 1 bigha =  1 bigha
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "कट्टा"{
+                result = myInt! * 20.0  // 1 bigha = 20 kattha
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+
+            if component2 == "रोपनि"{
+                result = myInt! * 13.31  // 1 bigha = 13.31 roopani
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+            }
+
+            
+            if component2 == "दाम"{
+                result = myInt! * 3403.331658  // 1 bigha = 3403.331658 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "अाना"{
+                result = myInt! * 212.9314872  // 1 bigha = 212.9314872 aana
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "पैसा" {
+                
+                result = myInt! * 851.9031447  // 1 bigha = 851.9031447 paisa
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "खेतमुरी" {
+                
+                result = myInt! * 0.5324  // 1 bigha = 0.5324 khetmuri
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "धुर" {
+                
+                result = myInt! * 400.0372   // 1 bigha = 400.0372 dhur
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+
+            
+            if component2 == "sq.meter" {
+                
+                result = myInt! * 6772.63   // 1 bigha = 6772.63 sq.meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "sq.feet" {
+                
+                result = myInt! * 72900  // 1 bigha = 72900 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+
+            
+
+            
+        
+        } // if component1 == "बिघा" ends here
+        
+        if component1 == "कट्टा" {
+            if component2 == "बिघा"{
+                result = myInt! / 20    // 1 kattha = 1/20 bigha
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "कट्टा"{
+                result = myInt! * 1     // 1 kattha = 1 kattha
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "रोपनि"{
+                result = myInt! / 1.5022 // 1 kattha = 0.6655 ropani i.e 1/ 1.5022 ropani
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+            }
+            
+            
+            if component2 == "दाम"{
+                result = myInt! * 170.1658291       // 1 kattha = 170.1658291 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "अाना"{
+                result = myInt! * 10.64874214    // 1 kattha = 10.64874214 aana
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "पैसा" {
+                
+                result = myInt! * 42.59496855       // a kattha = 42.59496855 paisa
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "खेतमुरी" {
+                
+                result = myInt! * 0.026626  // 1 kattha = 0.026626 khetMuri
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "धुर" {
+                
+                result = myInt! * 20    // 1 kattha = 20 dhur
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            
+            if component2 == "sq.meter" {
+                
+                result = myInt! * 338.63    // 1 katha = 338.63 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "sq.feet" {
+                
+                result = myInt! * 3645  // 1 kattha = 3645 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+        
+            
+        } // component1 = kattha ends here
+        
+        if component1 == "रोपनि"{
+            
+            if component2 == "बिघा"{
+                result = myInt! / 13.31         // 1 bigha = 13.31 ropani
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "कट्टा"{
+                result = myInt! * 1.5022        // 1 ropani = 1.5022 kattha
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "रोपनि"{
+                result = myInt! * 1.0       // 1 ropani = 1 ropani
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+            }
+            
+            
+            if component2 == "दाम"{
+                result = myInt! * 256       // 1 ropani = 256 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "अाना"{
+                result = myInt! * 16    // 1 ropani = 16 aana
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "पैसा" {
+                
+                result = myInt! * 64        // 1 ropani = 64 paisa
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "खेतमुरी" {
+                
+                result = myInt! * 0.04  // 1 ropani = 0.04 kheetMuri
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "धुर" {
+                
+                result = myInt! * 30.0484       // 1 ropani = 30.0484 dhur
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            
+            if component2 == "sq.meter" {
+                
+                result = myInt! * 508.72        // 1 ropani = 508.72 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "sq.feet" {
+                
+                result = myInt! * 5476      // 1 ropani = 5476 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            
+            
+            
+        } // component1 == ropani Ends here
+        
+        
+        if component1 == "दाम"{
+            
+            if component2 == "बिघा"{
+                result = myInt! / 3403.331658       // 1 bigha = 3403.331658 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "कट्टा"{
+                result = myInt! / 170.1658291       // 1 kattha = 170.1658291 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "रोपनि"{
+                result = myInt! / 256       // 1 ropani = 256 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+            }
+            
+            
+            if component2 == "दाम"{
+                result = myInt! * 1     // 1 daam = 1 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "अाना"{
+                result = myInt! / 16     //  1 aana = 16 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "पैसा" {
+                
+                result = myInt! / 4    // a paisa = 4 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "खेतमुरी" {
+                
+                result = myInt! / 6390.9547       // 1 khetMuri = 6390.9547 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "धुर" {
+                
+                result = myInt! / 8.5075        // 1 dhur = 8.5075 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            
+            if component2 == "sq.meter" {
+                
+                result = myInt! * 1.99      // 1 daam = 1.99 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "sq.feet" {
+                
+                result = myInt! * 21.39     // 1 daam = 21.39 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+
+            
+            
+            
+            
+        } // component1 = daam ends here
+        
+        
+        if component1 == "अाना"{
+            
+            if component2 == "बिघा"{
+                result = myInt! / 212.9314872       // 1 bigha = 212.9314872 aana
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "कट्टा"{
+                result = myInt! / 10.64874214    // 1 kattha = 10.64874214 aana
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "रोपनि"{
+                result = myInt! / 16    // 1 ropani = 16 aana
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+            }
+            
+            
+            if component2 == "दाम"{
+                result = myInt! * 16        // 1 aana = 16 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "अाना"{
+                result = myInt! * 1     // 1 aana = 1 aana
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "पैसा" {
+                
+                result = myInt! * 4     // 1 aana = 4 paisa
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "खेतमुरी" {
+                
+                result = myInt! / 400  // 1khetMuri = 400 aana
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "धुर" {
+                
+                result = myInt! * 0.532     // 1 dhur = 0.532 aana
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            
+            if component2 == "sq.meter" {
+                
+                result = myInt! * 31.80         // 1 aana = 31.80 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "sq.feet" {
+                
+                result = myInt! * 342.25        // 1 aana = 342.25 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+
+            
+            
+            
+            
+        } // component1 = aana ends here
+        
+        if component1 == "पैसा"{
+            
+            if component2 == "बिघा"{
+                result = myInt!    /          851.9031447  // 1 bigha = 851.9031447 paisa 
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "कट्टा"{
+                result = myInt! / 42.59496855       // a kattha = 42.59496855 paisa    
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "रोपनि"{
+                result = myInt! / 64        // 1 ropani = 64 paisa
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+            }
+            
+            
+            if component2 == "दाम"{
+                result = myInt! * 4     // 1 paisa = 4 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "अाना"{
+                result = myInt! / 4    // 1 aana = 4 paisa
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "पैसा" {
+                
+                result = myInt! * 1     // a aana = a anna
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "खेतमुरी" {
+                
+                result = myInt! / 1600      // 1 khetMutr = 1600 paisa
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "धुर" {
+                
+                result = myInt! / 2.12956   // 1 dhur = 2.12956 paisa
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            
+            if component2 == "sq.meter" {
+                
+                result = myInt! * 7.95      // 1 paisa = 7.95 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "sq.feet" {
+                
+                result = myInt! * 85.56         // 1 paisa = 85.56 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+
+            
+            
+            
+            
+        } // component1 = paisa ends here
+        
+        if component1 == "खेतमुरी"{
+            
+            if component2 == "बिघा"{
+                result = myInt! / 0.5324  // 1 bigha = 0.5324 khetmuri
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "कट्टा"{
+                result = myInt! / 0.026626  // 1 kattha = 0.026626 khetMuri
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "रोपनि"{
+                result = myInt! * 25        // 1 khetMuri = 25 Ropani
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+            }
+            
+            
+            if component2 == "दाम"{
+                result = myInt! * 6390.9547       // 1 khetMuri = 6390.9547 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "अाना"{
+                result = myInt! * 400  // 1khetMuri = 400 aana
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "पैसा" {
+                
+                result = myInt! * 1600      // 1 khetMutr = 1600 paisa
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "खेतमुरी" {
+                
+                result = myInt! * 1     // 1 khetMuri = 1 khetMuri
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "धुर" {
+                
+                result = myInt! * 751.2108683 // 1 khetMuri = 751.2108683 dhur
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            
+            if component2 == "sq.meter" {
+                
+                result = myInt! * 12718     // 1 khetMuri = 12718 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "sq.feet" {
+                
+                result = myInt! * 136895.4074   // 1 khetMuri = 136895.4074 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+
+            
+            
+            
+            
+        } // component1 = khetMuri ends here
+
+        
+        if component1 == "धुर"{
+            
+            
+            if component2 == "बिघा"{
+                result = myInt! / 400    // 1 bigha = 400.0372 dhur
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "कट्टा"{
+                result = myInt! /  20    // 1 kattha = 20 dhur
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "रोपनि"{
+                result = myInt! / 30.0484       // 1 ropani = 30.0484 dhur
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+            }
+            
+            
+            if component2 == "दाम"{
+                result = myInt! * 8.5075        // 1 dhur = 8.5075 daam
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "अाना"{
+                result = myInt! / 0.532     // 1 dhur = 0.532 aana
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "पैसा" {
+                
+                result = myInt! * 2.12956   // 1 dhur = 2.12956 paisa
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "खेतमुरी" {
+                
+                result = myInt! / 751.2108683 // 1 khetMuri = 751.21086 dhur
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "धुर" {
+                
+                result = myInt! * 1     // 1 dhur = 1 dhur
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            
+            if component2 == "sq.meter" {
+                
+                result = myInt! * 16.93     // 1 dhur = 16.93 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "sq.feet" {
+                
+                result = myInt! * 182.25        // 1 dhur = 182.25 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+
+            
+            
+            
+        } // component1 = dhur
+
+        
+        if component1 == "sq.meter"{
+            
+            if component2 == "बिघा"{
+                result = myInt! / 6772.63   // 1 bigha = 6772.63 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "कट्टा"{
+                result = myInt! / 338.63        // 1 kattha = 338.63 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "रोपनि"{
+                result = myInt! / 508.72        // 1 ropani = 508.72 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+            }
+            
+            
+            if component2 == "दाम"{
+                result = myInt! / 1.99      // 1 daam = 1.99 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "अाना"{
+                result = myInt! / 31.80     // 1 aana = 31.80 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "पैसा" {
+                
+                result = myInt! / 7.95      // 1 paisa = 7.95 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "खेतमुरी" {
+                
+                result = myInt! / 12718     // 1 khetmuri = 12718 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "धुर" {
+                
+                result = myInt! / 16.93         // 1 dhur = 16.93 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            
+            if component2 == "sq.meter" {
+                
+                result = myInt! * 1         // 1 sq meter = 1 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "sq.feet" {
+                
+                result = myInt! * 10.76391      // 1 sq meter = 10.76391 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+
+            
+            
+            
+            
+        } //  component1 sq meter ends here
+
+        
+        if component1 == "sq.feet"{
+            
+            if component2 == "बिघा"{
+                result = myInt! / 72900         // 1 bigha = 72900 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "कट्टा"{
+                result = myInt! / 3645      // 1 kattha = 3645 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "रोपनि"{
+                result = myInt! / 5476      // 1 ropani = 5476 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+            }
+            
+            
+            if component2 == "दाम"{
+                result = myInt! / 21.39     //1 daam = 21.39 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "अाना"{
+                result = myInt! / 342.25        // 1 aana = 342.25 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "पैसा" {
+                
+                result = myInt! / 85.56     // 1 paisa = 85.56 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "खेतमुरी" {
+                
+                result = myInt! * 136895.4074       // 1 khetMuri = 136895.4074
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "धुर" {
+                
+                result = myInt! / 182.25  // 1 sq feet = 1/182.25 dhur
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            
+            if component2 == "sq.meter" {
+                
+                result = myInt! * 0.0929030     // 1 sq feet = 0.0929030 sq meter
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+            
+            if component2 == "sq.feet" {
+                
+                result = myInt! * 1     // 1 sq feet = 1 sq feet
+                resultLabel.text = "\(result)"
+                outputLabel.text = "Done"
+                
+            }
+
+            
+            
+            
+            
+        } //  component 1 == sq feet ends here
+
+    
+        
+    }
+    
+    // to clearaway keyboard when user taps blank spaces:
+    
+    
+    override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?){
+        self.view.endEditing(true)
+        
+        
+    }
+    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        Picker1.delegate=self
+        Picker1.dataSource=self
+        
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+
+}
+
